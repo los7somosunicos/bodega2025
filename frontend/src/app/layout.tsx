@@ -1,16 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"]
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"]
-});
+import { Chakra_Petch } from "next/font/google";
+import Navbar from "@/components/Navbar";
+const inter = Chakra_Petch({ subsets: ["latin"], weight: ["300"] });
 
 export const metadata: Metadata = {
   title: "Sistema de Control ingresos y egresos de activos",
@@ -24,7 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+      <body className={`${inter.className} antialiased`}>
+        <Navbar />
+        <main className="mt-20 flex justify-center">{children}</main>
+      </body>
     </html>
   );
 }

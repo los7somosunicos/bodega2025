@@ -7,7 +7,7 @@
     "lint:fix": "npm run lint --fix",
     "format": "prettier --write \"**/*.+(js|json|ts|tsx|css|scss|sass|html)\"",
     "prettify": "npm run format && npm run lint:fix",
-    "dev": "npm run prettify && next dev",
+    "dev": "npm run prettify && next dev --turbopack",
     "build": "next build",
     "start": "next start"
   },
