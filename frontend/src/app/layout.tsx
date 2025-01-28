@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Chakra_Petch } from "next/font/google";
-import Navbar from "@/components/Navbar";
+import { Sidebar } from "@/components/SideBar";
+import { MainBar } from "@/components/MainBar";
 const inter = Chakra_Petch({ subsets: ["latin"], weight: ["300"] });
 
 export const metadata: Metadata = {
@@ -17,8 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        <Navbar />
-        <main className="mt-20 flex justify-center">{children}</main>
+        <div className="flex h-screen border border-red-600">
+          <Sidebar />
+          <MainBar />
+          <main className="flex-1">{children}</main>
+        </div>
       </body>
     </html>
   );
