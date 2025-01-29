@@ -1,3 +1,3 @@
 export default function Home() {
-  return <div>Home</div>;
+  return <div className=" w-[100%] border border-red-700">Home</div>;
 }
