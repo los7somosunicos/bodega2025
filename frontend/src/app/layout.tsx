@@ -18,10 +18,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-          <div className="flex">
+        <div className="flex">
           <Sidebar />
           <MainBar />
-          </div>
+            </div>
+           <div className="flex flex-1">
+              <main>{children}</main>
+        </div>
       </body>
     </html>
   );
