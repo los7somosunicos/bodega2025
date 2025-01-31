@@ -1,3 +1,7 @@
+import DataCard from "@/components/DataCard";
+
 export default function Home() {
-  return <div>Home</div>;
+  return <div>
+    <DataCard />
+  </div>;
 }
