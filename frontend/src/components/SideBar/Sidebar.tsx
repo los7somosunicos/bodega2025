@@ -12,7 +12,6 @@ const Sidebar = (): React.ReactElement => {
       )}
     >
       <p className="font-bold mt-10">Control de Ingresos</p>
-      
     </aside>
   );
 };
