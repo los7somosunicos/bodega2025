@@ -3,3 +3,8 @@ export type MenuType = {
   path: string;
   // icon:React.ReactElement
 };
+
+export type MenuProps = {
+  menu:MenuType[],
+  title:string
+}

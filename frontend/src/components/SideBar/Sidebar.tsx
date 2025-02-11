@@ -1,5 +1,6 @@
 import React from "react";
 import cx from "classnames";
+import Menu from "./Menu";
 
 const Sidebar = (): React.ReactElement => {
   return (
@@ -12,6 +13,7 @@ const Sidebar = (): React.ReactElement => {
       )}
     >
       <p className="font-bold mt-10">Control de Ingresos</p>
+      <Menu />
     </aside>
   );
 };
