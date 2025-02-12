@@ -1,18 +1,22 @@
+'use client'
 import React from "react";
 import { MenuProps, MenuType } from "@/models/menu.type";
-import { usePathname } from "next/navigation";
+import menuItem from "./MenuItem";
+// import { usePathname } from "next/navigation";
 
 
-
-function Menu({menu, title}:MenuProps): React.ReactElement {
-  const currentNav = usePathname()
+function Menu({ menu, title }: MenuProps): React.ReactElement {
+  // const currentNav = usePathname();
   return (
-      <ul className="flex items-center">
-       <li>{title}</li>
-        {menu.map((item:MenuType, index:number)=>(
-          
+    <div>
+      <p className="font-bold mt-10">{title}</p>
+      <ul 
+        className="flex flex-col items-center"> 
+        {menu.map((item: MenuType, index: number) => (
+          <menuItem />
         ))}
       </ul>
+    </div>
   );
 }
 

@@ -1,7 +1,7 @@
 import React from "react";
 import cx from "classnames";
 import Menu from "./Menu";
-
+import { menuList } from "@/assets/temporalMenu";
 const Sidebar = (): React.ReactElement => {
   return (
     <aside
@@ -12,8 +12,7 @@ const Sidebar = (): React.ReactElement => {
         }
       )}
     >
-      <p className="font-bold mt-10">Control de Ingresos</p>
-      <Menu />
+      <Menu menu={menuList} title="Menu Principal"/>
     </aside>
   );
 };

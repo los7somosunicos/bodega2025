@@ -5,6 +5,6 @@ export type MenuType = {
 };
 
 export type MenuProps = {
-  menu:MenuType[],
-  title:string
-}
+  menu: MenuType[];
+  title: string;
+};

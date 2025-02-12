@@ -28,5 +28,4 @@ const menuList: Array<MenuType> = [
   }
 ];
 
-
-export {menuList}
+export { menuList };
