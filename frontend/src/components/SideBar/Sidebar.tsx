@@ -12,7 +12,7 @@ const Sidebar = (): React.ReactElement => {
         }
       )}
     >
-      <Menu menu={menuList} title="Menu Principal"/>
+      <Menu menu={menuList} title="Menu Principal" />
     </aside>
   );
 };

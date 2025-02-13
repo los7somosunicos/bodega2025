@@ -1,15 +1,14 @@
-import React from 'react'
+import React from "react";
 import Link from "next/link";
 import cx from "classnames";
-import { MenuType } from '@/models/menu.type';
+import { MenuType } from "@/models/menu.type";
 
-const menuItem = ({title, path}:MenuType):React.ReactElement => {
+const MenuItem = ({ title, path }: MenuType): React.ReactElement => {
   return (
-    <li>
-        <Link href={path} className={cx()}>
-              {title}
-            </Link>
+    <li className={cx(`w-full h-10 border-0.5 border-gray-600 inline-block align-middle`)}>
+      <Link href={path}>{title}</Link>
     </li>
-}
+  );
+};
 
-export default menuItem
+export default MenuItem;
