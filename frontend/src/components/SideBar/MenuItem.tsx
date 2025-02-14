@@ -4,17 +4,17 @@ import cx from "classnames";
 import { MenuType } from "@/models/menu.type";
 import { usePathname } from "next/navigation";
 
-
 const MenuItem = ({ title, path }: MenuType): React.ReactElement => {
-    const currentPath = usePathname()
+  const currentPath = usePathname();
   return (
-    <li 
+    <li
       className={cx(
-        'w-[80%] h-10 rounded flex items-center justify-center hover:text-black hover:bg-white hover:font-bold',
-      {
-        'bg-white text-black font-bold':currentPath === path
-      }
-      )}>
+        "w-[80%] h-10 rounded flex items-center justify-center hover:text-black hover:bg-white hover:font-bold",
+        {
+          "bg-white text-black font-bold": currentPath === path
+        }
+      )}
+    >
       <Link href={path}>{title}</Link>
     </li>
   );

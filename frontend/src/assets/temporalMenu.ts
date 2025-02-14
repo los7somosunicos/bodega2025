@@ -11,21 +11,26 @@ const menuList: Array<MenuType> = [
     path: "/perfil"
     // icon: "user"
   },
+
+  {
+    title: "Inventario",
+    path: "/inventory"
+    // icon: "help-circle"
+  },
+  {
+    title: "Reservar",
+    path: "/reserva"
+    //  icon: "log-out"
+  },  
   {
     title: "Configuración",
     path: "/configuracion"
     //icon: "settings",
-  },
-  {
-    title: "Ayuda",
-    path: "/ayuda"
-    // icon: "help-circle"
-  },
-  {
-    title: "Cerrar sesión",
-    path: "/logout"
-    //  icon: "log-out"
   }
 ];
+
+
+
+
 
 export { menuList };
