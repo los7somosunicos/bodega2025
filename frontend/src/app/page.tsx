@@ -1,5 +1,5 @@
-import { Table, TableHeader } from '@/components/Table';
-import React from 'react'
+import { Table, TableHeader, TableRow } from "@/components/Table";
+import React from "react";
 const tempTable = [
   {
     Name: "Juan",
@@ -21,8 +21,10 @@ const home = () => {
   return (
     <Table>
       <TableHeader columns={headerTitles} />
+        {tempTable.map((row, index) => (<TableRow row={row} key={index}/>)
+      )}
     </Table>
   );
-}
+};
 
-export default home
+export default home;

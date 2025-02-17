@@ -21,16 +21,12 @@ const menuList: Array<MenuType> = [
     title: "Reservar",
     path: "/reserva"
     //  icon: "log-out"
-  },  
+  },
   {
     title: "Configuración",
     path: "/configuracion"
     //icon: "settings",
   }
 ];
-
-
-
-
 
 export { menuList };

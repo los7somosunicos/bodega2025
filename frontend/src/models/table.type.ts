@@ -1,9 +1,9 @@
-import { JSX } from "react"
+import { JSX } from "react";
 
 export type TableRowProps = {
-    row:Record<string,string | number | JSX.Element>
-}
+  row: Record<string, string | number | JSX.Element>;
+};
 
 export type TableCellProps = {
-  value: string | number | JSX.Element; 
+  value: string | number | JSX.Element;
 };
