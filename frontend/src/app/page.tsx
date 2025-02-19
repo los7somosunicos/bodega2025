@@ -21,8 +21,9 @@ const home = () => {
   return (
     <Table>
       <TableHeader columns={headerTitles} />
-        {tempTable.map((row, index) => (<TableRow row={row} key={index}/>)
-      )}
+      {tempTable.map((row, index) => (
+        <TableRow row={row} key={index} />
+      ))}
     </Table>
   );
 };
