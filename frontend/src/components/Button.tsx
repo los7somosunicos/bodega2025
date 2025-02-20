@@ -1,4 +1,3 @@
-
 import React from "react";
 
 interface GenericButtonProps {
@@ -19,16 +18,16 @@ const GenericButton: React.FC<GenericButtonProps> = ({
   icon = null
 }) => {
   return (
-    <div className="relative flex justify-center items-center ml-6">
+    <div className="">
       <button
         type={type}
         onClick={onClick}
-        className={`text-white p-2 rounded-md text-sm font-bold transition-colors cursor-pointer ${className}`}
+        className={`p-1 rounded-md inline-flex text-center justify-center font-bold transition-colors cursor-pointer ${className}`}
         disabled={disabled}
       >
+        {icon}
         {label}
       </button>
-      {icon}
     </div>
   );
 };
