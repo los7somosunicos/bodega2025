@@ -1,6 +1,6 @@
 import { Table, TableHeader, TableRow } from "@/components/Table";
 import React from "react";
-import {tempTable} from "@/assets/temporalMenu"
+import { tempTable } from "@/assets/temporalMenu";
 
 export default function home() {
   const headerTitles = Object.keys(tempTable[0] || {});
@@ -14,5 +14,4 @@ export default function home() {
       </Table>
     </div>
   );
-};
-
+}
