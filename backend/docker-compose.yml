@@ -1,0 +1,31 @@
+name: bodegaBackend
+services:
+  api: 
+    container_name: bodegaBackend 
+    build: .\
+    env_file:
+      - .env
+    ports:
+     - "3001-3001"
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+  postgres:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - DATABASE_HOST=127.0.0.1
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=bodega-db 
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+volumes:
+  redis_data:
+  postgres_data:

@@ -1,0 +1,40 @@
+FROM node:latest as builder
+
+WORKDIR /bodegadb-backend
+
+COPY package*.json ./
+
+RUN npm install -g npm@latest
+
+COPY . .
+RUN npx prisma generate
+
+RUN npm run build
+
+FROM node:latest as runner
+
+WORKDIR /bodegadb-backend
+
+ENV NODE_ENV=${NODE_ENV} \
+    PORT=3001 \
+    DATABASE_URL=${DATABASE_URL} \
+    POSTGRES_USER=${POSTGRES_USER} \
+    POSTGRES_PASSWORD=${POSTGRES_PASSWORD} \
+    POSTGRES_DB=${POSTGRES_DB} \
+    POSTGRES_HOST=${POSTGRES_HOST} \
+    POSTGRES_PORT=${POSTGRES_PORT}    
+
+
+RUN npm install -g npm@latest
+
+COPY --chown=node:node package*.json ./
+
+COPY --chown=node:node --from=builder /bodegadb-backend/dist/ ./dist
+
+RUN npm install --omit dev
+
+USER node
+
+EXPOSE 3001
+
+CMD ["npm", "run", "start"]
