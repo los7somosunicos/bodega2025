@@ -13,11 +13,56 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
+model User{
+  id        String @id @default(uuid())
+  email     String    @unique
+  firstName String
+  lastName  String
   password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  loans     Loan[]
+  createAt  DateTime  @default(now())
+  updateAt  DateTime   @updatedAt
+  deleteAt  DateTime?
+}
+
+model Asset {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
+  quantity    Int      @default(1) // Para bienes múltiples (ej. sillas, mesas)
+  available   Int      @default(1) // Cantidad disponible para préstamo
+  createdAt   DateTime @default(now())
+  updateAt    DateTime   @updatedAt
+  deleteAt    DateTime?
+  loans       Loan[]
+}
+
+model Category {
+  id     String  @id @default(uuid())
+  name   String  @unique
+  assets Asset[]
+}
+
+model Loan {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  assetId   String
+  asset     Asset    @relation(fields: [assetId], references: [id])
+  quantity  Int      @default(1) // Si es 1, significa que es un bien único (ej. máquina)
+  loanDate  DateTime @default(now())
+  returnDue DateTime // Fecha esperada de devolución
+  returned  Boolean  @default(false)
+  return    Return?
+
+  @@unique([assetId, userId], name: "unique_loan") // Un usuario no puede solicitar el mismo activo varias veces sin devolverlo
+}
+
+model Return {
+  id       String   @id @default(uuid())
+  loanId   String   @unique
+  loan     Loan     @relation(fields: [loanId], references: [id])
+  returnDate DateTime @default(now())
 }
