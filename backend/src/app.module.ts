@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config'
 import { validate } from './config/env.validation';
+import { AssetModule } from './asset/asset.module';
+import { AssetModule } from './asset/asset.module';
 import configuration from './config/configuration';
 
 
@@ -10,7 +12,8 @@ import configuration from './config/configuration';
       validate,
       isGlobal: true,
       load:[configuration],
-    })
+    }),
+    AssetModule
   ],
   controllers: [],
   providers: [],
