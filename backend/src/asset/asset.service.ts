@@ -13,8 +13,17 @@ export class AssetService {
     });
   }
 
-  async findAll() {
-    return await this.prisma.asset.findMany({where: {deleteAt: null}});
+  async findAll(skip = 0, take = 10) {
+    try {
+      return await this.prisma.asset.findMany({where:
+         {deleteAt: null},
+        skip,
+        take,
+        orderBy: {createdAt: 'desc'}
+      });
+    } catch (error) {
+      throw new NotFoundException('No hay datos');
+    }
   }
 
   async findOne(id: string) {
@@ -34,7 +43,10 @@ export class AssetService {
     }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} asset`;
+  async remove(id: string) {
+    return await this.prisma.asset.update({
+      where: {id},  
+      data: {deleteAt: new Date()}
+    });
   }
 }
