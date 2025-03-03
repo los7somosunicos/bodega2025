@@ -8,6 +8,7 @@ export class AssetService {
   constructor(private readonly prisma: PrismaService) {}
   
  async create(data: CreateAssetDto) {
+  const 
     return await this.prisma.asset.create({
       data
     });
