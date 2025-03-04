@@ -8,27 +8,27 @@ export class AssetController {
   constructor(private readonly assetService: AssetService) {}
 
   @Post()
-  create(@Body() createAssetDto: CreateAssetDto) {
-    return this.assetService.create(createAssetDto);
+  create(@Body() data: CreateAssetDto): Promise<CreateAssetDto> {
+    return  this.assetService.create(data);
   }
 
   @Get()
-  findAll() {
+  findAll(): Promise<CreateAssetDto[]> {
     return this.assetService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: string):Promise<CreateAssetDto> {
     return this.assetService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAssetDto: UpdateAssetDto) {
+  update(@Param('id') id: string, @Body() updateAssetDto: UpdateAssetDto):Promise<CreateAssetDto> {
     return this.assetService.update(id, updateAssetDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id') id: string):Promise<CreateAssetDto> {
     return this.assetService.remove(id);
   }
 }
