@@ -46,23 +46,29 @@ model Category {
 }
 
 model Loan {
-  id        String   @id @default(uuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  assetId   String
-  asset     Asset    @relation(fields: [assetId], references: [id])
-  quantity  Int      @default(1) // Si es 1, significa que es un bien único (ej. máquina)
-  loanDate  DateTime @default(now())
-  returnDue DateTime // Fecha esperada de devolución
-  returned  Boolean  @default(false)
-  return    Return?
+  id          String   @id @default(uuid())
+  assetId     String
+  asset       Asset    @relation(fields: [assetId], references: [id])
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  quantity    Int
+  loanDate    DateTime @default(now())
+  dueDate     DateTime?               // 🛠 Renombrado para evitar confusión con `returnedAt` de `Return`
+  returned    Boolean  @default(false) // 🛠 Indica si se devolvió todo
+  fullName    String   
+  dui         String   
+  contact     String?  
 
-  @@unique([assetId, userId], name: "unique_loan") // Un usuario no puede solicitar el mismo activo varias veces sin devolverlo
+  returns     Return[]                // 🛠 Relación para múltiples devoluciones
+
+  @@unique([assetId, userId], name: "unique_loan")
 }
 
 model Return {
-  id       String   @id @default(uuid())
-  loanId   String   @unique
-  loan     Loan     @relation(fields: [loanId], references: [id])
-  returnDate DateTime @default(now())
+  id          String   @id @default(uuid())
+  loanId      String
+  loan        Loan     @relation(fields: [loanId], references: [id])
+  returnedAt  DateTime @default(now())
+  quantity    Int      // 🛠 Cantidad devuelta
+  notes       String?  // 🛠 Notas opcionales (daños, comentarios, etc.)
 }
