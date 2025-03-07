@@ -43,6 +43,9 @@ model Category {
   id     String  @id @default(uuid())
   name   String  @unique
   assets Asset[]
+  createAt  DateTime  @default(now())
+  updateAt  DateTime   @updatedAt
+  deleteAt  DateTime?
 }
 
 model Loan {
@@ -51,24 +54,13 @@ model Loan {
   asset       Asset    @relation(fields: [assetId], references: [id])
   userId      String
   user        User     @relation(fields: [userId], references: [id])
-  quantity    Int
-  loanDate    DateTime @default(now())
-  dueDate     DateTime?               // 🛠 Renombrado para evitar confusión con `returnedAt` de `Return`
-  returned    Boolean  @default(false) // 🛠 Indica si se devolvió todo
-  fullName    String   
-  dui         String   
-  contact     String?  
-
-  returns     Return[]                // 🛠 Relación para múltiples devoluciones
-
-  @@unique([assetId, userId], name: "unique_loan")
-}
-
-model Return {
-  id          String   @id @default(uuid())
-  loanId      String
-  loan        Loan     @relation(fields: [loanId], references: [id])
-  returnedAt  DateTime @default(now())
-  quantity    Int      // 🛠 Cantidad devuelta
-  notes       String?  // 🛠 Notas opcionales (daños, comentarios, etc.)
+  quantity    Int      // Cantidad prestada
+  loanDate    DateTime @default(now()) // Fecha de préstamo
+  returned    Boolean  @default(false) // Indica si se ha devuelto todo
+  returnedAt  DateTime? // Fecha de devolución
+  fullName    String   // Nombre completo de la persona que recibe el préstamo
+  dui         String   // Identificación (DUI) de la persona
+  contact     String?  // Contacto de la persona
+  notes       String?  // Notas sobre la devolución (ej. "2 sillas dañadas")
+  @@unique([assetId, dui], name: "loan_asset_dui_unique")
 }

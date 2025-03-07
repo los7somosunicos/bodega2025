@@ -3,6 +3,8 @@ import { ConfigModule } from '@nestjs/config'
 import { validate } from './config/env.validation';
 import { AssetModule } from './asset/asset.module';
 import { CategoryModule } from './category/category.module';
+import { LoanModule } from './loan/loan.module';
+import { AuthModule } from './auth/auth.module';
 import configuration from './config/configuration';
 
 
@@ -14,7 +16,9 @@ import configuration from './config/configuration';
       load:[configuration],
     }),
     AssetModule,
-    CategoryModule
+    CategoryModule,
+    LoanModule,
+    AuthModule
   ],
   controllers: [],
   providers: [],
