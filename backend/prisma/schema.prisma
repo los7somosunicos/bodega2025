@@ -62,5 +62,7 @@ model Loan {
   dui         String   // Identificación (DUI) de la persona
   contact     String?  // Contacto de la persona
   notes       String?  // Notas sobre la devolución (ej. "2 sillas dañadas")
+  updateAt  DateTime   @updatedAt
+  deleteAt  DateTime?
   @@unique([assetId, dui], name: "loan_asset_dui_unique")
 }

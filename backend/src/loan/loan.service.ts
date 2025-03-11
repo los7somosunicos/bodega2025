@@ -1,26 +1,50 @@
-import { Injectable } from '@nestjs/common';
-import { CreateLoanDto } from './dto/create-loan.dto';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { LoanDto } from './dto/create-loan.dto';
 import { UpdateLoanDto } from './dto/update-loan.dto';
+import { PrismaService } from 'src/services/prisma/prisma.service';
 
 @Injectable()
 export class LoanService {
-  create(createLoanDto: CreateLoanDto) {
-    return 'This action adds a new loan';
+  constructor(private readonly prisma: PrismaService) {}
+  async create(data: LoanDto) {
+    try {
+        return this.prisma.loan.create({ data });
+    } catch (error) {
+      throw new BadRequestException('No se pudo crear el prestamo');
+    };
   }
 
-  findAll() {
-    return `This action returns all loan`;
+  async findAll() {
+    return await this.prisma.loan.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} loan`;
+  async findOne(id:string) {
+    try {
+        const data = await this.prisma.loan.findUnique({ where: { id } });
+        if (!data) throw new BadRequestException('No se encontro el prestamo');
+        return data
+    } catch (error) {
+      throw new BadRequestException('No se encontro el prestamo');
+    }
   }
 
-  update(id: number, updateLoanDto: UpdateLoanDto) {
-    return `This action updates a #${id} loan`;
+  async update(id: string, updateLoanDto: UpdateLoanDto) {
+    try {
+        const data = await this.findOne(id);
+        if (!data) throw new BadRequestException('No se encontro el prestamo');
+        return await this.prisma.loan.update({
+            where: { id },
+            data: updateLoanDto,
+        });
+
+    } catch (error) {
+      throw new BadRequestException('No se encontro el prestamo');
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} loan`;
+  async remove(id: number) {
+    return await this.prisma.loan.update({
+      where: { id }, 
+      data: { deleteAt: new Date() },  
   }
 }
