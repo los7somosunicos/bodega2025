@@ -6,12 +6,11 @@ import { PrismaService } from 'src/services/prisma/prisma.service';
 @Injectable()
 export class LoanService {
   constructor(private readonly prisma: PrismaService) {}
+  
   async create(data: LoanDto) {
-    try {
+    
         return this.prisma.loan.create({ data });
-    } catch (error) {
-      throw new BadRequestException('No se pudo crear el prestamo');
-    };
+
   }
 
   async findAll() {
@@ -42,9 +41,10 @@ export class LoanService {
     }
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     return await this.prisma.loan.update({
       where: { id }, 
       data: { deleteAt: new Date() },  
+    });
   }
 }
