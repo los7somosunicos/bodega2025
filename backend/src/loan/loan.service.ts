@@ -8,7 +8,7 @@ export class LoanService {
   constructor(private readonly prisma: PrismaService) {}
   
   async create(data: LoanDto) {
-    
+      
         return this.prisma.loan.create({ data });
 
   }
