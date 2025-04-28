@@ -1,3 +1,7 @@
-export { default as Category } from "./category.type";
-export { default as asset } from "./asset.type";
-export { default as loan } from "./loan.type";
+export * from "./asset.type";
+export * from "./category.type";
+export * from "./loan.type";
+export * from "./table.type";
+export * from "./loan.type";
+export * from "./menu.type";
+
