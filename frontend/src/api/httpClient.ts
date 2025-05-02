@@ -1,10 +1,12 @@
+import { asset, Category, loan } from "@/models";
+
 // http-client.ts
 type HttpMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 
 interface RequestOptions {
   method?: HttpMethod;
   headers?: Record<string, string>;
-  body?: any;
+  body?: asset | loan | Category;
 }
 
 class HttpClient {
