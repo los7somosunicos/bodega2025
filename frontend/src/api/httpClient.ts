@@ -49,15 +49,15 @@ class HttpClient {
 
   // Métodos específicos para tus endpoints
   public async getArticles(): Promise<any[]> {
-    return this.request<any[]>("asset");
+    return this.request<asset[]>("asset");
   }
 
   public async getLoans(): Promise<any[]> {
-    return this.request<any[]>("loan");
+    return this.request<loan[]>("loan");
   }
 
   public async getCategories(): Promise<any[]> {
-    return this.request<any[]>("category");
+    return this.request<Category[]>("category");
   }
 
   // Métodos genéricos para CRUD
