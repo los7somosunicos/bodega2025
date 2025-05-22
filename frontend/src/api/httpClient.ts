@@ -12,7 +12,7 @@ interface RequestOptions {
 class HttpClient {
   private baseUrl: string;
 
-  constructor(baseUrl: string = "http://localhost:3001") {
+  constructor(baseUrl: string = "http://localhost:3001/api/v1") {
     this.baseUrl = baseUrl;
   }
 
@@ -36,7 +36,7 @@ class HttpClient {
     try {
       const response = await fetch(url, config);
 
-      if (!response.ok) {
+      if (!response) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
@@ -48,15 +48,15 @@ class HttpClient {
   }
 
   // Métodos específicos para tus endpoints
-  public async getArticles(): Promise<any[]> {
+  public async getArticles(): Promise<asset[]> {
     return this.request<asset[]>("asset");
   }
 
-  public async getLoans(): Promise<any[]> {
+  public async getLoans(): Promise<loan[]> {
     return this.request<loan[]>("loan");
   }
 
-  public async getCategories(): Promise<any[]> {
+  public async getCategories(): Promise<Category[]> {
     return this.request<Category[]>("category");
   }
 
@@ -65,14 +65,14 @@ class HttpClient {
     return this.request<T>(endpoint);
   }
 
-  public async post<T>(endpoint: string, data: any): Promise<T> {
+  public async post<T>(endpoint: string, data: asset | loan | Category): Promise<T> {
     return this.request<T>(endpoint, {
       method: "POST",
       body: data
     });
   }
 
-  public async put<T>(endpoint: string, data: any): Promise<T> {
+  public async put<T>(endpoint: string, data: asset | loan | Category): Promise<T> {
     return this.request<T>(endpoint, {
       method: "PUT",
       body: data
